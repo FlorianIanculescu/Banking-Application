@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Information</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa;
+        }.company-name {
+        color: white;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        .nav-link {
+            color: white; /* Dark text color */
+            transition: color 0.3s ease;
+            cursor: pointer; /* Change cursor to pointer */
+            padding: 0.5rem 1rem; /* Add padding to match other tabs */
+            text-decoration: none; /* Remove default underline */
+        }
+        .nav-link:hover {
+            color: #ff8c00; /* Orange color on hover */
+        }
+        .logout-link {
+            color: white; /* White text color */
+            background-color: #ff8c00; /* Orange background color */
+            border: none; /* Remove border */
+            border-radius: 0.25rem; /* Add border-radius for rounded corners */
+            padding: 0.5rem 1rem; /* Add padding to match other tabs */
+            cursor: pointer; /* Change cursor to pointer */
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+            text-decoration: none; /* Remove default underline */
+        }
+        .logout-link:hover {
+            background-color: #ffad80; /* Lighter orange color on hover */
+        }
+
+        .logOutBtn {
+            color: white; /* Dark text color */
+            transition: color 0.3s ease;
+            cursor: pointer; /* Change cursor to pointer */
+            padding: 0.5rem 1rem; /* Add padding to match other tabs */
+            text-decoration: none; /* Remove default underline */
+            border: none;
+            background-color: #343a40;
+        }
+        .card {
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .logOutBtn:hover {
+            color: #ff8c00; /* Orange color on hover */
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-radius: 35px 35px 0px 0px;
+        }
+        .footerText {
+            font-family: "Times New Roman";
+            font-size: 18px;
+            color: white;
+        }
+
+        .header {
+            background-color: #343a40;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-radius: 0px 0px 35px 35px;
+        }
+        .card-title {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .card-text {
+            color: #6c757d;
+        }
+        .card-info {
+            margin-bottom: 10px;
+        }
+        .card-info span {
+            font-weight: bold;
+        }
+        .backButton {
+          position: absolute;
+          bottom: 7em;
+          left: 5em;
+          background-color: #f8f9fa;
+          margin: none;
+          font-size: 20px;
+          border-radius: 35px 35px;
+          width: 130px;
+          height: 50px;
+          border: 2px solid #007bff;
+        }
+        .backButton:hover {
+            color: #ff8c00; /* Orange color on hover */
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="company-name">Spring Bank</div>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/showAccountInformation}">Account Information</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/showDashboard}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/showFormForWithdraw}">Withdraw</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/showFormForDeposit}">Deposit</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <form th:action="@{/logout}" method="POST">
+            <button type="submit" class="logOutBtn"><b>Logout</b></button>
+        </form>
+    </div>
+</header>
+
+<br><br><br>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body content">
+                    <h5 class="card-title text-center mb-4">Account Information</h5>
+                    <div class="card-info">
+                        <span>Username:</span>
+                        <p th:text="${customer.username}"/>
+                    </div>
+                    <div class="card-info">
+                        <span>First Name:</span>
+                        <p th:text="${customer.firstName}"/>
+                    </div>
+                    <div class="card-info">
+                        <span>Last Name:</span>
+                        <p th:text="${customer.lastName}"/>
+                    </div>
+                    <div class="card-info">
+                        <span>Email:</span>
+                        <p th:text="${customer.email}"/>
+                    </div>
+                    <div class="card-info">
+                        <span>Account Number:</span>
+                        <p th:text="${customer.accountNumber}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a th:href="@{/showDashboard}">
+    <button type="button" class="backButton">Go Back</button>
+</a>
+
+</body>
+
+<footer class="footer">
+    <div class="container">
+        <span class="footerText"><b>SpringBank</b>| Ianculescu Florian &copy; 2024 All rights reserved.</span>
+    </div>
+</footer>
+
+</html>
